@@ -13,8 +13,15 @@ router.beforeEach(async (to, from) => {
     if (to.meta.auth && !store.isLoggedIn) {
         return { name: "login", query: { redirect: to.fullPath } }
     } else if (to.meta.guest && store.isLoggedIn) {
-        console.log("Not supposed to be here.")
-        return { name: "evaluations" }
+        if (store.user.role === 'user') {
+            return { name: "evaluations" }
+        } else if (store.user.role === 'admin') {
+            return { name: "admin.dashboard" }
+        }
+    } else if (!to.meta.guest && store.isLoggedIn) {
+        if (store.user.role === 'user' && to.meta.admin) {
+            return { name: "evaluations" }
+        }
     }
 })
 

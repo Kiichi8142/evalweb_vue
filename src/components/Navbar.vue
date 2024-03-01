@@ -1,13 +1,13 @@
 <template>
-    <div v-if="store.isLoggedIn" class="bg-gray-800 text-gray-50">
-        <div class="flex justify-between max-w-7xl p-6 mx-auto">
+    <div v-if="store.isLoggedIn" class="border-b">
+        <div class="flex justify-between items-center max-w-7xl p-4 mx-auto">
             <div class="flex gap-10">
                 <div>
-                    <router-link class="text-gray-400" :class="{ 'text-gray-50': route.path === '/dashboard' }"
+                    <router-link class="text-gray-600" :class="{ 'text-gray-950': route.path === '/dashboard' }"
                         :to="{ name: 'dashboard' }">Dashboard</router-link>
                 </div>
                 <div>
-                    <router-link class="text-gray-400" :class="{ 'text-gray-50': route.path === '/evaluations' }"
+                    <router-link class="text-gray-600" :class="{ 'text-gray-950': route.path === '/evaluations' }"
                         :to="{ name: 'evaluations' }">ประเมินผล</router-link>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 <template>
-    <div class="grid grid-cols-1 lg:grid-cols-3 justify-items-center gap-4 p-4">
+    <div class="grid grid-cols-1 lg:grid-cols-3 justify-items-center space-x-4">
         <p class="font-medium text-gray-950">{{ itemData.name }}</p>
         <p class="text-gray-600">{{ itemData.description }}</p>
         <div class="flex gap-4 h-fit">

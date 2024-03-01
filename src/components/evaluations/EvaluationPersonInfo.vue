@@ -1,8 +1,10 @@
 <template>
-    <div class="max-w-7xl mx-auto bg-white rounded-md p-6 m-6">
-        <p class="text-gray-900 font-semibold text-lg">ข้อมูลบุคคล</p>
-        <p class="text-gray-500">รายละเอียดของผู้ประเมินและผู้รับการประเมิน</p>
-        <div class="bg-white rounded-md">
+    <div class="max-w-7xl mx-auto space-y-4">
+        <div class="space-y-0.5">
+            <p class="text-gray-900 font-semibold text-lg">ข้อมูลบุคคล</p>
+            <p class="text-gray-500">รายละเอียดของผู้ประเมินและผู้รับการประเมิน</p>
+        </div>
+        <div class="border p-4 rounded-md">
             <p class="text-gray-900 font-semibold mt-4">ข้อมูลผู้รับการประเมิน</p>
             <div class="grid grid-cols-1 md:grid-cols-2 mt-4 px-8">
                 <div class="grid grid-cols-2">

@@ -2,7 +2,7 @@
     <Menu as="div" class="relative inline-block text-left">
         <div>
             <MenuButton
-                class="inline-flex w-full justify-center rounded-md text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
+                class="inline-flex w-full justify-center rounded-md text-gray-950 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
                 {{ username }}
                 <ChevronDownIcon class="-mr-1 ml-2 h-5 w-5 text-gray-600 hover:text-gray-600" aria-hidden="true" />
             </MenuButton>
@@ -16,10 +16,11 @@
                 <div class="px-1 py-1">
                     <MenuItem v-slot="{ active }">
                     <router-link :to="{ name: 'account' }" :class="[
-                        active ? 'bg-gray-600 text-white' : 'text-gray-900',
+                        active ? 'bg-blue-600 text-white' : 'text-gray-900',
                         'group flex w-full items-center rounded-md px-2 py-2 text-sm',
                     ]">
-                        <UserIcon :active="active" class="mr-2 h-5 w-5 text-gray-400" aria-hidden="true" />
+                        <UserIcon :active="active" :class="{ 'text-white': active }" class="mr-2 h-5 w-5 text-gray-400"
+                            aria-hidden="true" />
                         บัญชีผู้ใช้
                     </router-link>
                     </MenuItem>
@@ -28,11 +29,11 @@
                 <div class="px-1 py-1">
                     <MenuItem v-slot="{ active }">
                     <button @click.prevent="$emit('logout')" :class="[
-                        active ? 'bg-gray-600 text-white' : 'text-gray-900',
+                        active ? 'bg-blue-600 text-white' : 'text-gray-900',
                         'group flex w-full items-center rounded-md px-2 py-2 text-sm',
                     ]">
-                        <ArrowRightEndOnRectangleIcon :active="active" class="mr-2 h-5 w-5 text-gray-400"
-                            aria-hidden="true" />
+                        <ArrowRightEndOnRectangleIcon :active="active" :class="{ 'text-white': active }"
+                            class="mr-2 h-5 w-5 text-gray-400" aria-hidden="true" />
                         ออกจากระบบ
                     </button>
                     </MenuItem>

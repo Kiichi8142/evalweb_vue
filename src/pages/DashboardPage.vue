@@ -1,4 +1,5 @@
 <template>
+    <Navbar></Navbar>
     <div class="p-4 md:p-6">
         <div class="max-w-7xl bg-white mx-auto p-6 m-6 rounded-md">
             <h1 class="font-bold text-3xl">Dashboard</h1>
@@ -17,6 +18,7 @@
 </template>
 
 <script setup>
+import Navbar from '@/components/Navbar.vue';
 import { useEvaluationStore } from '@/stores/evaluation';
 import { storeToRefs } from 'pinia';
 import { computed, onMounted } from 'vue';
