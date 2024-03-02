@@ -1,12 +1,12 @@
 <template>
-    <Dialog :open="isOpen" class="relative z-50">
-        <DialogPanel as="div" class="fixed inset-0 flex w-screen items-center bg-black/[.4] justify-center p-4">
+    <div v-if="isOpen" class="relative z-50">
+        <div as="div" class="fixed inset-0 flex w-screen items-center bg-black/[.4] justify-center p-4">
             <div class="rounded-xl border shadow-md max-w-3xl bg-white w-full">
                 <div class="flex flex-col p-6 space-y-1.5">
-                    <DialogTitle class="font-semibold">Add team</DialogTitle>
-                    <DialogDescription class="text-gray-600">
+                    <h1 class="font-semibold">Add team</h1>
+                    <h1 class="text-gray-600">
                         Add a new team to your organization
-                    </DialogDescription>
+                    </h1>
                 </div>
                 <div class="p-6 grid">
                     <form @submit.prevent="">
@@ -38,17 +38,11 @@
                         class="bg-gray-900 hover:bg-gray-800 text-gray-50 font-medium p-2 rounded-md">Add</button>
                 </div>
             </div>
-        </DialogPanel>
-    </Dialog>
+        </div>
+    </div>
 </template>
 
 <script setup>
-import {
-    Dialog,
-    DialogPanel,
-    DialogTitle,
-    DialogDescription,
-} from '@headlessui/vue'
 import { useEmployeeStore } from '@/stores/employee';
 import { reactive } from 'vue';
 const props = defineProps(['isOpen'])
