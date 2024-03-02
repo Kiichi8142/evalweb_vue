@@ -9,6 +9,9 @@ import AdminDashboardPageVue from "@/pages/Admin/AdminDashboardPage.vue";
 import AdminManagePageVue from "@/pages/Admin/AdminManagePage.vue";
 import EmployeeManageTabVue from "@/components/admin/EmployeeManageTab.vue";
 import TeamManageTabVue from "@/components/admin/TeamManageTab.vue";
+import AdminTemplateDetailPage from "@/pages/Admin/AdminTemplateDetailPage.vue";
+import AdminTemplatesPage from "@/pages/Admin/AdminTemplatesPage.vue";
+import AdminTemplateDetailQuestionsPage from "@/pages/Admin/subroute/AdminTemplateDetailQuestionsPage.vue";
 
 const routes = [
     {
@@ -82,15 +85,11 @@ const routes = [
         name: 'admin.manage',
         children: [
             {
-                // UserProfile will be rendered inside User's <router-view>
-                // when /user/:id/profile is matched
                 path: 'employees',
                 name: 'admin.employees',
                 component: EmployeeManageTabVue,
             },
             {
-                // UserPosts will be rendered inside User's <router-view>
-                // when /user/:id/posts is matched
                 path: 'teams',
                 name: 'admin.teams',
                 component: TeamManageTabVue,
@@ -100,6 +99,31 @@ const routes = [
             admin: true,
             auth: true
         }
+    },
+    {
+        path: '/admin/templates',
+        component: AdminTemplatesPage,
+        name: 'admin.templates',
+        meta: {
+            admin: true,
+            auth: true
+        }
+    },
+    {
+        path: '/admin/templates/:id',
+        component: AdminTemplateDetailPage,
+        name: 'admin.template.detail',
+        meta: {
+            admin: true,
+            auth: true
+        },
+        children: [
+            {
+                path: 'questions',
+                name: 'admin.template.detail.questions',
+                component: AdminTemplateDetailQuestionsPage,
+            },
+        ],
     }
 ]
 

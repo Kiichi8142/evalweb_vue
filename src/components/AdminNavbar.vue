@@ -2,10 +2,12 @@
     <div class="border-b border-gray-200">
         <div class="flex justify-between items-center max-w-7xl p-4 mx-auto">
             <div class="font-semibold flex items-center gap-4">
-                <router-link class="text-gray-600" :class="{ 'text-gray-800': route.name === 'admin.dashboard' }"
-                    :to="{ name: 'admin.dashboard' }">Dashboard</router-link>
-                <router-link class="text-gray-600" :class="{ 'text-gray-800': route.name === 'admin.manage' }"
-                    :to="{ name: 'admin.manage' }">Manage</router-link>
+                <router-link :class="[route.name === 'admin.dashboard' ? 'text-blue-600' : 'text-slate-600']"
+                    :to="{ name: 'admin.dashboard' }">แดชบอร์ด</router-link>
+                <router-link :class="[route.path.includes('/admin/manage') ? 'text-blue-600' : 'text-slate-600']"
+                    :to="{ name: 'admin.teams' }">ข้อมูลทีม</router-link>
+                <router-link :class="[route.path.includes('/admin/templates') ? 'text-blue-600' : 'text-slate-600']"
+                    :to="{ name: 'admin.templates' }">ต้นฉบับ</router-link>
             </div>
             <div class="relative inline-block text-left">
                 <div v-if="store.isLoggedIn">

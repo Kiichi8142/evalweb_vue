@@ -10,13 +10,15 @@
                 <div class="border-b" />
                 <div class="flex flex-col lg:flex-row gap-8">
                     <div class="flex lg:flex-col lg:w-1/4 space-y-0.5">
-                        <router-link class="transition-all py-2 px-4 rounded-md font-medium hover:bg-gray-100"
-                            :class="{ 'bg-gray-200': route.name === 'admin.teams' }"
-                            :to="{ name: 'admin.teams' }">รายการทีม</router-link>
-                        <router-link class="transition-all py-2 px-4 rounded-md font-medium hover:bg-gray-100"
-                            :class="{ 'bg-gray-200': route.name === 'admin.employees' }"
-                            :to="{ name: 'admin.employees' }">พนักงาน</router-link>
-                        <a class="transition-all py-2 px-4 rounded-md font-medium hover:bg-gray-100">แบบประเมิน</a>
+                        <router-link class="transition-all py-2 px-4 rounded-md font-medium hover:bg-blue-100/50"
+                            :class="{ 'bg-blue-100/50': route.name === 'admin.teams' }" :to="{ name: 'admin.teams' }">
+                            รายการทีม
+                        </router-link>
+                        <router-link class="transition-all py-2 px-4 rounded-md font-medium hover:bg-blue-100/50"
+                            :class="{ 'bg-blue-100/50': route.name === 'admin.employees' }"
+                            :to="{ name: 'admin.employees' }">
+                            พนักงาน
+                        </router-link>
                     </div>
                     <div class="lg:w-3/4">
                         <router-view />
