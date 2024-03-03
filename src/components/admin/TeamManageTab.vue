@@ -7,9 +7,10 @@
         <div class="border-b" />
         <div class="space-y-4 pb-32">
             <div class="flex justify-between items-center space-x-2">
-                <input class="rounded-lg border border-gray-200 px-2 py-1 text-gray-800" type="text" placeholder="ค้นหา..."
-                    v-model="searchTerm">
-                <button @click="addTeam" class="bg-blue-600 p-2 text-blue-50 rounded-md hover:bg-blue-500">เพิ่มทีม</button>
+                <input class="rounded-lg border border-gray-200 px-2 py-1 text-gray-800" type="text"
+                    placeholder="ค้นหา..." v-model="searchTerm">
+                <button @click="addTeam"
+                    class="bg-blue-600 p-2 text-blue-50 rounded-md hover:bg-blue-500">เพิ่มทีม</button>
             </div>
             <div class="border rounded-md">
                 <table class="table-auto w-full">
@@ -47,7 +48,8 @@
                             <ChevronLeftIcon class="h-5 w-5" :class="{ 'text-gray-400': currentPage === 1 }" />
                         </button>
                         <button @click="nextPage" class="border rounded-md p-1" :disabled="currentPage === totalPages">
-                            <ChevronRightIcon class="h-5 w-5" :class="{ 'text-gray-400': currentPage === totalPages }" />
+                            <ChevronRightIcon class="h-5 w-5"
+                                :class="{ 'text-gray-400': currentPage === totalPages }" />
                         </button>
                         <button @click="lastPage" class="border rounded-md p-1" :disabled="currentPage === totalPages">
                             <ChevronDoubleRightIcon class="h-5 w-5"

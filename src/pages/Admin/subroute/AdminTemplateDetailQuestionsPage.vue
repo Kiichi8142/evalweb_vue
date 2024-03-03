@@ -9,27 +9,28 @@
             <div class="flex justify-between items-center space-x-2">
                 <input class="rounded-lg border border-gray-200 px-2 py-1 text-gray-800" type="text"
                     placeholder="ค้นหา..." v-model="searchTerm">
-                <button class="bg-blue-600 p-2 text-blue-50 rounded-md hover:bg-blue-500">เพิ่มคำถาม</button>
+                <button @click="openAddModal"
+                    class="bg-blue-600 p-2 text-blue-50 rounded-md hover:bg-blue-500">เพิ่มคำถาม</button>
             </div>
             <div class="border rounded-md">
                 <table class="table-auto w-full">
                     <thead>
                         <tr class="border-b">
                             <th class="h-12 px-4 text-center align-middle font-medium text-gray-600">รหัส</th>
-                            <th class="h-12 px-4 text-left align-middle font-medium text-gray-600">ชื่อ</th>
+                            <th class="h-12 px-4 text-left align-middle font-medium text-gray-600">คำถาม</th>
                             <th class="h-12 px-4 text-left align-middle font-medium text-gray-600">คำอธิบาย</th>
                             <th class="h-12 px-4 text-center align-middle font-medium text-gray-600">หมวด</th>
                             <th class="h-12 px-4 text-left align-middle font-medium text-gray-600"></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="employee in filteredAndPaginatedItems" class="border-b">
-                            <td class="p-4 align-middle text-center">{{ employee.id }}</td>
-                            <td class="p-4 align-middle">{{ employee.name }}</td>
-                            <td class="p-4 align-middle">{{ employee.description }}</td>
-                            <td class="p-4 align-middle text-center">{{ employee.section_id }}</td>
+                        <tr v-for="question in filteredAndPaginatedItems" class="border-b">
+                            <td class="p-4 align-middle text-center">{{ question.id }}</td>
+                            <td class="p-4 align-middle">{{ question.name }}</td>
+                            <td class="p-4 align-middle">{{ question.description }}</td>
+                            <td class="p-4 align-middle text-center">{{ question.section_id }}</td>
                             <td class="p-4 align-middle">
-                                <button class="text-blue-600">Edit</button>
+                                <button @click="editQuestion(question)" class="text-blue-600">Edit</button>
                             </td>
                         </tr>
                     </tbody>
@@ -60,6 +61,8 @@
                 </div>
             </div>
         </div>
+        <UpdateQuestionModal :is-open="isModalOpen" :question="selectedQuestion" @close-modal="closeModal" />
+        <AddQuestionModal :template_id="id" :is-open="isAddModalOpen" @close-modal="closeModal" />
     </div>
 </template>
 
@@ -67,6 +70,8 @@
 import { ref, computed } from 'vue';
 import { ChevronDoubleLeftIcon, ChevronDoubleRightIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/24/solid';
 import { useRoute } from 'vue-router';
+import UpdateQuestionModal from '@/components/admin/UpdateQuestionModal.vue';
+import AddQuestionModal from '@/components/admin/AddQuestionModal.vue';
 
 import { useTemplateStore } from '@/stores/template';
 import { storeToRefs } from 'pinia';
@@ -116,17 +121,23 @@ const nextPage = () => {
     currentPage.value = Math.min(totalPages.value, currentPage.value + 1);
 };
 
-const selectedEmployee = ref(0)
+const selectedQuestion = ref(0)
 
 const isModalOpen = ref(false)
+const isAddModalOpen = ref(false)
 
-const editEmployee = (employee) => {
-    selectedEmployee.value = employee
+const openAddModal = () => {
+    isAddModalOpen.value = true
+}
+
+const editQuestion = (question) => {
+    selectedQuestion.value = question
     isModalOpen.value = true
 }
 
 const closeModal = () => {
     isModalOpen.value = false
+    isAddModalOpen.value = false
 }
 
 </script>

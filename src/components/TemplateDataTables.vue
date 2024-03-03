@@ -13,7 +13,7 @@
                     <td class="p-4 align-middle">{{ template.id }}</td>
                     <td class="p-4 align-middle">{{ template.name }}</td>
                     <td @click="view(template)" class="p-4 align-middle text-blue-600 cursor-pointer">
-                        View
+                        ดูข้อมูล
                     </td>
                 </tr>
             </tbody>

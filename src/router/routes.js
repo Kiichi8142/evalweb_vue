@@ -12,6 +12,7 @@ import TeamManageTabVue from "@/components/admin/TeamManageTab.vue";
 import AdminTemplateDetailPage from "@/pages/Admin/AdminTemplateDetailPage.vue";
 import AdminTemplatesPage from "@/pages/Admin/AdminTemplatesPage.vue";
 import AdminTemplateDetailQuestionsPage from "@/pages/Admin/subroute/AdminTemplateDetailQuestionsPage.vue";
+import AdminTemplateDetailManagePage from "@/pages/Admin/subroute/AdminTemplateDetailManagePage.vue";
 
 const routes = [
     {
@@ -122,6 +123,11 @@ const routes = [
                 path: 'questions',
                 name: 'admin.template.detail.questions',
                 component: AdminTemplateDetailQuestionsPage,
+            },
+            {
+                path: 'manage',
+                name: 'admin.template.detail.manage',
+                component: AdminTemplateDetailManagePage,
             },
         ],
     }

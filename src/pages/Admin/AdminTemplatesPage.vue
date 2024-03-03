@@ -4,11 +4,18 @@
         <div class="mx-auto max-w-7xl">
             <div class="p-4 lg:p-10 space-y-6">
                 <div class="space-y-0.5">
-                    <h1 class="text-2xl font-bold">ต้นฉบับแบบประเมิน</h1>
-                    <p class="text-gray-600">จัดการ แก้ไข ข้อมูลต้นฉบับแบบประเมิน</p>
+                    <h1 class="text-2xl font-bold">แบบประเมิน</h1>
+                    <p class="text-gray-600">จัดการ แก้ไข ข้อมูลแบบประเมิน</p>
                 </div>
                 <div class="border-b" />
-                <TemplateDataTables :templates="templates" />
+                <div class="space-y-6">
+                    <div class="space-y-0.5">
+                        <h1 class="text-lg font-bold">รายการแบบประเมินต้นฉบับ</h1>
+                        <p class="text-gray-600">รายชื่อแบบประเมินต้นฉบับทั้งหมด</p>
+                    </div>
+                    <div class="border-b" />
+                    <TemplateDataTables :templates="templates" />
+                </div>
             </div>
         </div>
     </div>
@@ -24,11 +31,12 @@ import { onMounted } from 'vue';
 
 const store = useTemplateStore()
 const { templates } = storeToRefs(store)
-const { fetchTemplates, fetchQuestions } = store
+const { fetchTemplates, fetchQuestions, fetchSections } = store
 
 onMounted(async () => {
-    await store.fetchTemplates()
-    await store.fetchQuestions()
+    await fetchTemplates()
+    await fetchQuestions()
+    await fetchSections()
 })
 
 </script>

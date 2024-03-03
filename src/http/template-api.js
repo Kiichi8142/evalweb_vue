@@ -15,3 +15,11 @@ export const updateTemplate = (id, template) => api.put(`${templateResource}/${i
 export const removeTemplate = (id) => api.delete(`${templateResource}/${id}`)
 
 export const allQuestions = () => api.get(questionResource)
+
+export const createQuestion = question => api.post(questionResource, question)
+
+export const allSections = () => api.get(apiPath + "/sections")
+
+export const updateQuestion = (id, question) => api.put(`${questionResource}/${id}`, question)
+
+export const deleteQuestion = (id) => api.delete(`${questionResource}/${id}`)
