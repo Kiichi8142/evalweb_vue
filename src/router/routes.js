@@ -13,6 +13,7 @@ import AdminTemplateDetailPage from "@/pages/Admin/AdminTemplateDetailPage.vue";
 import AdminTemplatesPage from "@/pages/Admin/AdminTemplatesPage.vue";
 import AdminTemplateDetailQuestionsPage from "@/pages/Admin/subroute/AdminTemplateDetailQuestionsPage.vue";
 import AdminTemplateDetailManagePage from "@/pages/Admin/subroute/AdminTemplateDetailManagePage.vue";
+import AdminTemplateDetailSectionsPage from "@/pages/Admin/subroute/AdminTemplateDetailSectionsPage.vue";
 
 const routes = [
     {
@@ -128,6 +129,11 @@ const routes = [
                 path: 'manage',
                 name: 'admin.template.detail.manage',
                 component: AdminTemplateDetailManagePage,
+            },
+            {
+                path: 'sections',
+                name: 'admin.template.detail.sections',
+                component: AdminTemplateDetailSectionsPage,
             },
         ],
     }

@@ -1,6 +1,8 @@
 import { defineStore } from "pinia";
-import { allTemplates, allQuestions, allSections, updateQuestion, deleteQuestion, removeTemplate, createQuestion } from '@/http/template-api'
+import { allTemplates, allQuestions, makeEvaluationForEmp, allSections, createTemplate, removeTemplateSection, addTemplateSection, updateQuestion, deleteQuestion, removeTemplate, createQuestion } from '@/http/template-api'
 import { ref } from 'vue'
+import { useNotification } from "@kyvg/vue3-notification";
+const { notify } = useNotification()
 
 export const useTemplateStore = defineStore('templateStore', () => {
     const templates = ref([])
@@ -22,12 +24,30 @@ export const useTemplateStore = defineStore('templateStore', () => {
         sections.value = data.data
     }
 
+    const handleCreateTemplate = async (template) => {
+        const { data: createdTemplate } = await createTemplate(template)
+        templates.value.push(createdTemplate.data)
+    }
+
     const handleUpdateQuestion = async (id, question) => {
         const { data: updatedQuestion } = await updateQuestion(id, question)
         const currentQuestion = questions.value.find(item => item.id === id)
         for (const key in updatedQuestion.data) {
             currentQuestion[key] = updatedQuestion.data[key];
         }
+    }
+
+    const handleAddTemplateSection = async (id, sectionList) => {
+        const { data: addedSections } = await addTemplateSection(id, sectionList)
+        const currentTemplate = templates.value.find(item => item.id === parseInt(id))
+        currentTemplate.sections = addedSections.data
+    }
+
+    const handleRemoveTemplateSection = async (id, sectionList) => {
+        await removeTemplateSection(id, sectionList)
+        const currentTemplate = templates.value.find(item => item.id === parseInt(id))
+        const index = currentTemplate.sections.findIndex(item => item.id === id)
+        currentTemplate.sections.splice(index, 1)
     }
 
     const handleAddQuestion = async (question) => {
@@ -47,6 +67,14 @@ export const useTemplateStore = defineStore('templateStore', () => {
         templates.value.splice(index, 1)
     }
 
+    const handleMakeEvaluationForAllEmp = async (id) => {
+        const { data } = await makeEvaluationForEmp(id)
+        notify({
+            title: "Success",
+            text: data.message,
+        })
+    }
+
     return {
         templates,
         questions,
@@ -57,7 +85,11 @@ export const useTemplateStore = defineStore('templateStore', () => {
         handleUpdateQuestion,
         handleDeleteQuestion,
         handleDeleteTemplate,
-        handleAddQuestion
+        handleAddQuestion,
+        handleAddTemplateSection,
+        handleRemoveTemplateSection,
+        handleCreateTemplate,
+        handleMakeEvaluationForAllEmp
     }
 });
 

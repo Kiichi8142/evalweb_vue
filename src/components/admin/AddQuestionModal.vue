@@ -25,7 +25,7 @@
                         <div class="grid grid-cols-2 gap-4">
                             <div class="grid gap-2">
                                 <label for="position">หมวดหมู่</label>
-                                <SectionListBox :sections="sections" :selected-section="form.section_id"
+                                <SectionListBox :sections="template.sections" :selected-section="form.section_id"
                                     @update:section="changeSection" />
                             </div>
                         </div>
@@ -46,13 +46,19 @@
 import SectionListBox from './SectionListBox.vue';
 import { useTemplateStore } from '@/stores/template';
 import { storeToRefs } from 'pinia';
-import { reactive } from 'vue';
+import { reactive, computed } from 'vue';
+import { useRoute } from 'vue-router';
 const props = defineProps(['isOpen', 'template_id'])
 const emit = defineEmits(['closeModal'])
 
 const store = useTemplateStore()
-const { sections } = storeToRefs(store)
+const { templates } = storeToRefs(store)
 const { handleAddQuestion } = store
+
+const route = useRoute()
+const id = parseInt(route.params.id)
+
+const template = computed(() => templates.value.find(item => item.id === id))
 
 const form = reactive({
     "name": '',
@@ -62,7 +68,7 @@ const form = reactive({
 })
 
 const changeSection = (newId) => {
-    form.section_id = sections.value.find(item => item.id === newId)
+    form.section_id = template.value.sections.find(item => item.id === newId)
 }
 
 const addTeam = async () => {

@@ -11,7 +11,7 @@
             </div>
             <div class="relative inline-block text-left">
                 <div v-if="store.isLoggedIn">
-                    <Dropdown @logout="logout" :username="store.user.name" />
+                    <Dropdown :user-role="store.user.role" @logout="logout" :username="store.user.name" />
                 </div>
             </div>
         </div>

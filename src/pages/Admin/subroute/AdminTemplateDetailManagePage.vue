@@ -4,15 +4,15 @@
             <h1 class="text-2xl font-medium">ควบคุม</h1>
             <p class="text-slate-500">ควบคุมการทำงานของแบบประเมิน</p>
         </div>
-        <!-- <div class="border-b" />
+        <div class="border-b" />
         <div class="space-y-4">
             <div class="space-y-0.5">
-                <h1 class="text-md font-medium">ปิดการประเมิน</h1>
-                <p class="text-slate-500">ปิดความสามารถในการประเมินของผู้ใช้ทั้งหมดของแบบประเมินต้นฉบับนี้</p>
+                <h1 class="text-md font-medium">สร้างแบบประเมิน</h1>
+                <p class="text-slate-500">เพิ่มแบบประเมินให้ทุกคนในองค์กร</p>
             </div>
-            <button
-                class="bg-blue-600 hover:bg-blue-700 text-blue-50 py-1 px-3 rounded-md transition-colors">ปิดการประเมิน</button>
-        </div> -->
+            <button @click="makeEval"
+                class="bg-blue-600 hover:bg-blue-700 text-blue-50 py-1 px-3 rounded-md transition-colors">สร้างแบบประเมิน</button>
+        </div>
         <div class="border-b" />
         <div class="space-y-4">
             <div class="space-y-0.5">
@@ -37,7 +37,11 @@ import { ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 const store = useTemplateStore()
-const { handleDeleteTemplate } = store
+const { handleDeleteTemplate, handleMakeEvaluationForAllEmp } = store
+
+const makeEval = async () => {
+    await handleMakeEvaluationForAllEmp(id)
+}
 
 const route = useRoute()
 const router = useRouter()

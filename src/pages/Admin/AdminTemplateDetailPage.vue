@@ -15,6 +15,11 @@
                         ข้อมูล
                     </router-link>
                     <router-link class="transition-all py-2 px-4 rounded-md font-medium hover:bg-blue-100/50"
+                        :class="{ 'bg-blue-100/50': route.name === 'admin.template.detail.sections' }"
+                        :to="{ name: 'admin.template.detail.sections' }">
+                        หมวดหมู่
+                    </router-link>
+                    <router-link class="transition-all py-2 px-4 rounded-md font-medium hover:bg-blue-100/50"
                         :class="{ 'bg-blue-100/50': route.name === 'admin.template.detail.questions' }"
                         :to="{ name: 'admin.template.detail.questions' }">
                         คำถาม

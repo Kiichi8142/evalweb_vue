@@ -11,13 +11,18 @@
                 <div class="flex flex-col gap-2 rounded-md p-2">
                     <div v-if="selfEvaluations.length" class="space-y-4">
                         <p class="text-gray-900">ประเมินตนเอง</p>
-                        <Evaluation v-for="evaluation in selfEvaluations" :evaluation="evaluation" :key="evaluation.id" />
+                        <Evaluation v-for="evaluation in selfEvaluations" :evaluation="evaluation"
+                            :key="evaluation.id" />
                     </div>
                     <div v-if="otherEvaluations.length">
                         <p class="text-gray-900">ประเมินผู้อื่น</p>
-                        <Evaluation v-for="evaluation in otherEvaluations" :evaluation="evaluation" :key="evaluation.id" />
+                        <Evaluation v-for="evaluation in otherEvaluations" :evaluation="evaluation"
+                            :key="evaluation.id" />
                     </div>
                 </div>
+            </div>
+            <div v-else>
+                <h1 class="text-2xl text-slate-400/80">คุณยังไม่มีแบบประเมินใดๆในตอนนี้</h1>
             </div>
         </div>
     </div>

@@ -47,5 +47,4 @@ const { selectedSection } = toRefs(props)
 const handleChange = (value) => {
     emit('update:section', value.id)
 }
-
 </script>

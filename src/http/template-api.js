@@ -14,6 +14,12 @@ export const updateTemplate = (id, template) => api.put(`${templateResource}/${i
 
 export const removeTemplate = (id) => api.delete(`${templateResource}/${id}`)
 
+export const addTemplateSection = (id, sections) => api.post(`${templateResource}/sections/${id}`, sections)
+
+export const removeTemplateSection = (id, sections) => api.post(`${templateResource}/sections/${id}/rm`, sections)
+
+export const makeEvaluationForEmp = (id) => api.post(`${templateResource}/make/${id}`)
+
 export const allQuestions = () => api.get(questionResource)
 
 export const createQuestion = question => api.post(questionResource, question)

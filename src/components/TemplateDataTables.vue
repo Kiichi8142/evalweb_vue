@@ -1,45 +1,52 @@
 <template>
-    <div class="border rounded-md">
-        <table class="table-auto w-full">
-            <thead>
-                <tr class="border-b">
-                    <th class="h-12 px-4 text-left align-middle font-medium text-gray-600">รหัส</th>
-                    <th class="h-12 px-4 text-left align-middle font-medium text-gray-600">ชื่อ</th>
-                    <th class="h-12 px-4 text-left align-middle font-medium text-gray-600"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="template in filteredAndPaginatedItems" class="border-b">
-                    <td class="p-4 align-middle">{{ template.id }}</td>
-                    <td class="p-4 align-middle">{{ template.name }}</td>
-                    <td @click="view(template)" class="p-4 align-middle text-blue-600 cursor-pointer">
-                        ดูข้อมูล
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="flex justify-between items-center space-x-2">
-        <div>
-            <p>หน้า {{ currentPage }} ใน {{ totalPages }}</p>
+    <div>
+        <div class="flex items-center p-2 justify-end">
+            <button @click="openAddModal" class="bg-blue-600 px-3 py-1 rounded-md text-blue-50">เพิ่มต้นแบบ</button>
         </div>
-        <div class="flex space-x-8 items-center">
-            <p>หน้าต่อแถว {{ itemsPerPage }}</p>
-            <div class="flex space-x-2 items-center">
-                <button @click="firstPage" class="border rounded-md p-1" :disabled="currentPage === 1">
-                    <ChevronDoubleLeftIcon class="h-5 w-5" :class="{ 'text-gray-400': currentPage === 1 }" />
-                </button>
-                <button @click="prevPage" class="border rounded-md p-1" :disabled="currentPage === 1">
-                    <ChevronLeftIcon class="h-5 w-5" :class="{ 'text-gray-400': currentPage === 1 }" />
-                </button>
-                <button @click="nextPage" class="border rounded-md p-1" :disabled="currentPage === totalPages">
-                    <ChevronRightIcon class="h-5 w-5" :class="{ 'text-gray-400': currentPage === totalPages }" />
-                </button>
-                <button @click="lastPage" class="border rounded-md p-1" :disabled="currentPage === totalPages">
-                    <ChevronDoubleRightIcon class="h-5 w-5" :class="{ 'text-gray-400': currentPage === totalPages }" />
-                </button>
+        <div class="border rounded-md">
+            <table class="table-auto w-full">
+                <thead>
+                    <tr class="border-b">
+                        <th class="h-12 px-4 text-left align-middle font-medium text-gray-600">รหัส</th>
+                        <th class="h-12 px-4 text-left align-middle font-medium text-gray-600">ชื่อ</th>
+                        <th class="h-12 px-4 text-left align-middle font-medium text-gray-600"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="template in filteredAndPaginatedItems" class="border-b">
+                        <td class="p-4 align-middle">{{ template.id }}</td>
+                        <td class="p-4 align-middle">{{ template.name }}</td>
+                        <td @click="view(template)" class="p-4 align-middle text-blue-600 cursor-pointer">
+                            ดูข้อมูล
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="flex justify-between items-center space-x-2">
+            <div>
+                <p>หน้า {{ currentPage }} ใน {{ totalPages }}</p>
+            </div>
+            <div class="flex space-x-8 items-center">
+                <p>หน้าต่อแถว {{ itemsPerPage }}</p>
+                <div class="flex space-x-2 items-center">
+                    <button @click="firstPage" class="border rounded-md p-1" :disabled="currentPage === 1">
+                        <ChevronDoubleLeftIcon class="h-5 w-5" :class="{ 'text-gray-400': currentPage === 1 }" />
+                    </button>
+                    <button @click="prevPage" class="border rounded-md p-1" :disabled="currentPage === 1">
+                        <ChevronLeftIcon class="h-5 w-5" :class="{ 'text-gray-400': currentPage === 1 }" />
+                    </button>
+                    <button @click="nextPage" class="border rounded-md p-1" :disabled="currentPage === totalPages">
+                        <ChevronRightIcon class="h-5 w-5" :class="{ 'text-gray-400': currentPage === totalPages }" />
+                    </button>
+                    <button @click="lastPage" class="border rounded-md p-1" :disabled="currentPage === totalPages">
+                        <ChevronDoubleRightIcon class="h-5 w-5"
+                            :class="{ 'text-gray-400': currentPage === totalPages }" />
+                    </button>
+                </div>
             </div>
         </div>
+        <AddTemplateModal :is-open="isOpen" @close-modal="closeModal" />
     </div>
 </template>
 
@@ -47,6 +54,17 @@
 import { ref, computed } from 'vue';
 import { ChevronDoubleLeftIcon, ChevronDoubleRightIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/24/solid';
 import { useRouter } from 'vue-router';
+import AddTemplateModal from './admin/AddTemplateModal.vue';
+
+const isOpen = ref(false)
+
+const openAddModal = () => {
+    isOpen.value = true
+}
+
+const closeModal = () => {
+    isOpen.value = false
+}
 
 const router = useRouter()
 
