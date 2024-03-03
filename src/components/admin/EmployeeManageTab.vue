@@ -7,9 +7,9 @@
         <div class="border-b" />
         <div class="space-y-4 pb-32">
             <div class="flex justify-between items-center space-x-2">
-                <input class="rounded-lg border border-gray-200 px-2 py-1 text-gray-800" type="text" placeholder="ค้นหา..."
-                    v-model="searchTerm">
-                <button @click="addEmployee"
+                <input class="rounded-lg border border-gray-200 px-2 py-1 text-gray-800" type="text"
+                    placeholder="ค้นหา..." v-model="searchTerm">
+                <button @click="openAddModal"
                     class="bg-blue-600 p-2 text-blue-50 rounded-md hover:bg-blue-500">เพิ่มพนักงาน</button>
             </div>
             <div class="border rounded-md">
@@ -51,7 +51,8 @@
                             <ChevronLeftIcon class="h-5 w-5" :class="{ 'text-gray-400': currentPage === 1 }" />
                         </button>
                         <button @click="nextPage" class="border rounded-md p-1" :disabled="currentPage === totalPages">
-                            <ChevronRightIcon class="h-5 w-5" :class="{ 'text-gray-400': currentPage === totalPages }" />
+                            <ChevronRightIcon class="h-5 w-5"
+                                :class="{ 'text-gray-400': currentPage === totalPages }" />
                         </button>
                         <button @click="lastPage" class="border rounded-md p-1" :disabled="currentPage === totalPages">
                             <ChevronDoubleRightIcon class="h-5 w-5"
@@ -62,6 +63,7 @@
             </div>
         </div>
         <UpdateEmployeeModal @close-modal="closeModal" :is-open="isModalOpen" :employee="selectedEmployee" />
+        <AddEmployeeModal :is-open="isAddModalOpen" @close-modal="closeModal" />
     </div>
 </template>
 
@@ -71,6 +73,7 @@ import { useEmployeeStore } from '@/stores/employee';
 import { ref, computed } from 'vue';
 import { storeToRefs } from 'pinia';
 import { ChevronDoubleLeftIcon, ChevronDoubleRightIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/24/solid';
+import AddEmployeeModal from './AddEmployeeModal.vue';
 
 const store = useEmployeeStore()
 const { employees } = storeToRefs(store)
@@ -118,6 +121,11 @@ const nextPage = () => {
 const selectedEmployee = ref(0)
 
 const isModalOpen = ref(false)
+const isAddModalOpen = ref(false)
+
+const openAddModal = () => {
+    isAddModalOpen.value = true
+}
 
 const editEmployee = (employee) => {
     selectedEmployee.value = employee
@@ -126,6 +134,7 @@ const editEmployee = (employee) => {
 
 const closeModal = () => {
     isModalOpen.value = false
+    isAddModalOpen.value = false
 }
 
 </script>

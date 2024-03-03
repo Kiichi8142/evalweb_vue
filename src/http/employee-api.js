@@ -8,6 +8,10 @@ export const allEmployees = () => api.get(empResource)
 
 export const updateEmployee = (id, employee) => api.put(`${empResource}/${id}`, employee)
 
+export const createEmployee = (employee) => api.post(empResource, employee)
+
+export const deleteEmployee = (id) => api.delete(`${empResource}/${id}`)
+
 export const allTeams = () => api.get(teamResource)
 
 export const getTeam = (id) => api.get(`${teamResource}/${id}`)

@@ -1,5 +1,5 @@
 import { ref, computed } from "vue";
-import { allEmployees, updateEmployee, allTeams, updateTeam, addTeam, deleteTeam } from "@/http/employee-api";
+import { allEmployees, createEmployee, updateEmployee, deleteEmployee, allTeams, updateTeam, addTeam, deleteTeam } from "@/http/employee-api";
 import { defineStore } from "pinia";
 
 export const useEmployeeStore = defineStore('employeeStore', () => {
@@ -14,6 +14,11 @@ export const useEmployeeStore = defineStore('employeeStore', () => {
     const fetchAllTeams = async () => {
         const { data } = await allTeams();
         teams.value = data.data
+    }
+
+    const handleCreateEmployee = async (employee) => {
+        const { data: createdEmployee } = await createEmployee(employee)
+        employees.value.push(createdEmployee.data)
     }
 
     const handleUpdateEmployee = async (id, employee) => {
@@ -43,6 +48,12 @@ export const useEmployeeStore = defineStore('employeeStore', () => {
         teams.value.splice(index, 1)
     }
 
+    const handleDeleteEmployee = async (id) => {
+        await deleteEmployee(id)
+        const index = employees.value.findIndex(item => item.id === id)
+        employees.value.splice(index, 1)
+    }
+
     return {
         employees,
         teams,
@@ -51,7 +62,9 @@ export const useEmployeeStore = defineStore('employeeStore', () => {
         handleUpdateEmployee,
         handleUpdateTeam,
         handleAddTeam,
-        handleDeleteTeam
+        handleDeleteTeam,
+        handleCreateEmployee,
+        handleDeleteEmployee
     }
 });
 
