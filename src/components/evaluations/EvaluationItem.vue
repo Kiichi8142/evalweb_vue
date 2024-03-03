@@ -1,7 +1,9 @@
 <template>
-    <div class="grid grid-cols-1 lg:grid-cols-3 justify-items-center space-x-4">
-        <p class="font-medium text-gray-950">{{ itemData.name }}</p>
-        <p class="text-gray-600">{{ itemData.description }}</p>
+    <div class="grid grid-cols-1 space-y-2 justify-items-center lg:justify-items-start">
+        <div class="space-y-0.5">
+            <p class="font-medium text-slate-950 dark:text-slate-50">{{ itemData.name }}</p>
+            <p class="text-slate-600 dark:text-slate-400">{{ itemData.description }}</p>
+        </div>
         <div class="flex gap-4 h-fit">
             <ItemChoice v-for="n in 4" :item-id="itemData.id" :item-score="itemData.score" :choice-value="n"
                 @selected="handleSelected" />

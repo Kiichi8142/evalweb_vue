@@ -3,6 +3,7 @@ import api from "./api";
 const apiPath = import.meta.env.VITE_API_PATH;
 const templateResource = apiPath + "/templates";
 const questionResource = apiPath + "/questions";
+const sectionResource = apiPath + "/sections";
 
 export const allTemplates = () => api.get(templateResource)
 
@@ -24,8 +25,14 @@ export const allQuestions = () => api.get(questionResource)
 
 export const createQuestion = question => api.post(questionResource, question)
 
-export const allSections = () => api.get(apiPath + "/sections")
-
 export const updateQuestion = (id, question) => api.put(`${questionResource}/${id}`, question)
 
 export const deleteQuestion = (id) => api.delete(`${questionResource}/${id}`)
+
+export const allSections = () => api.get(apiPath + "/sections")
+
+export const createSection = section => api.post(sectionResource, section)
+
+export const updateSection = (id, section) => api.put(`${sectionResource}/${id}`, section)
+
+export const deleteSection = (id) => api.delete(`${sectionResource}/${id}`)

@@ -1,37 +1,46 @@
 <template>
     <div class="space-y-6">
         <div>
-            <h1 class="text-lg font-medium">การจัดการพนักงาน</h1>
-            <p class="text-gray-600">เพิ่ม แก้ไข ข้อมูลพนักงาน</p>
+            <h1 class="text-lg font-medium dark:text-slate-50">การจัดการพนักงาน</h1>
+            <p class="text-gray-600 dark:text-slate-400">เพิ่ม แก้ไข ข้อมูลพนักงาน</p>
         </div>
-        <div class="border-b" />
+        <div class="border-b dark:border-slate-800" />
         <div class="space-y-4 pb-32">
             <div class="flex justify-between items-center space-x-2">
-                <input class="rounded-lg border border-gray-200 px-2 py-1 text-gray-800" type="text"
-                    placeholder="ค้นหา..." v-model="searchTerm">
+                <input
+                    class="rounded-lg border dark:bg-slate-900 border-gray-200 dark:border-slate-800 px-2 py-1 text-gray-800 dark:text-slate-200"
+                    type="text" placeholder="ค้นหา..." v-model="searchTerm">
                 <button @click="openAddModal"
-                    class="bg-blue-600 p-2 text-blue-50 rounded-md hover:bg-blue-500">เพิ่มพนักงาน</button>
+                    class="bg-blue-600 dark:bg-blue-400 p-2 text-blue-50 dark:text-slate-950 rounded-md hover:bg-blue-500">เพิ่มพนักงาน</button>
             </div>
-            <div class="border rounded-md">
+            <div class="border dark:border-slate-800 rounded-md">
                 <table class="table-auto w-full">
                     <thead>
-                        <tr class="border-b">
-                            <th class="h-12 px-4 text-left align-middle font-medium text-gray-600">รหัส</th>
-                            <th class="h-12 px-4 text-left align-middle font-medium text-gray-600">ชื่อ</th>
-                            <th class="h-12 px-4 text-left align-middle font-medium text-gray-600">ทีม</th>
-                            <th class="h-12 px-4 text-left align-middle font-medium text-gray-600">ตำแหน่ง</th>
-                            <th class="h-12 px-4 text-left align-middle font-medium text-gray-600"></th>
+                        <tr class="border-b dark:border-slate-800">
+                            <th class="h-12 px-4 text-left align-middle font-medium text-gray-600 dark:text-slate-400">
+                                รหัส</th>
+                            <th class="h-12 px-4 text-left align-middle font-medium text-gray-600 dark:text-slate-400">
+                                ชื่อ</th>
+                            <th class="h-12 px-4 text-left align-middle font-medium text-gray-600 dark:text-slate-400">
+                                ทีม</th>
+                            <th class="h-12 px-4 text-left align-middle font-medium text-gray-600 dark:text-slate-400">
+                                ตำแหน่ง</th>
+                            <th class="h-12 px-4 text-left align-middle font-medium text-gray-600 dark:text-slate-400">
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="employee in filteredAndPaginatedItems" class="border-b">
-                            <td class="p-4 align-middle">{{ employee.id }}</td>
-                            <td class="p-4 align-middle">{{ employee.firstname }} {{ employee.lastname }}</td>
-                            <td v-if="employee.team" class="p-4 align-middle">{{ employee.team.name }}</td>
-                            <td v-else class="p-4 align-middle">No Team</td>
-                            <td class="p-4 align-middle">{{ employee.position }}</td>
-                            <td class="p-4 align-middle">
-                                <button @click="editEmployee(employee)" class="text-blue-600">Edit</button>
+                        <tr v-for="employee in filteredAndPaginatedItems" class="border-b dark:border-slate-800">
+                            <td class="p-4 align-middle dark:text-slate-50">{{ employee.id }}</td>
+                            <td class="p-4 align-middle dark:text-slate-50">{{ employee.firstname }} {{
+                        employee.lastname }}</td>
+                            <td v-if="employee.team" class="p-4 align-middle dark:text-slate-50">{{ employee.team.name
+                                }}</td>
+                            <td v-else class="p-4 align-middle dark:text-slate-50">No Team</td>
+                            <td class="p-4 align-middle dark:text-slate-50">{{ employee.position }}</td>
+                            <td class="p-4 align-middle dark:text-slate-50">
+                                <button @click="editEmployee(employee)"
+                                    class="text-blue-600 dark:text-blue-400">Edit</button>
                             </td>
                         </tr>
                     </tbody>
@@ -39,24 +48,31 @@
             </div>
             <div class="flex justify-between items-center space-x-2">
                 <div>
-                    <p>หน้า {{ currentPage }} ใน {{ totalPages }}</p>
+                    <p class="dark:text-slate-50">หน้า {{ currentPage }} ใน {{ totalPages }}</p>
                 </div>
                 <div class="flex space-x-8 items-center">
-                    <p>หน้าต่อแถว {{ itemsPerPage }}</p>
+                    <p class="dark:text-slate-50">หน้าต่อแถว {{ itemsPerPage }}</p>
                     <div class="flex space-x-2 items-center">
-                        <button @click="firstPage" class="border rounded-md p-1" :disabled="currentPage === 1">
-                            <ChevronDoubleLeftIcon class="h-5 w-5" :class="{ 'text-gray-400': currentPage === 1 }" />
+                        <button @click="firstPage"
+                            class="border rounded-md p-1 dark:border-slate-800 dark:text-slate-50"
+                            :disabled="currentPage === 1">
+                            <ChevronDoubleLeftIcon class="h-5 w-5"
+                                :class="{ 'text-gray-400 dark:text-slate-600': currentPage === 1 }" />
                         </button>
-                        <button @click="prevPage" class="border rounded-md p-1" :disabled="currentPage === 1">
-                            <ChevronLeftIcon class="h-5 w-5" :class="{ 'text-gray-400': currentPage === 1 }" />
+                        <button @click="prevPage" class="border rounded-md p-1 dark:border-slate-800 dark:text-slate-50"
+                            :disabled="currentPage === 1">
+                            <ChevronLeftIcon class="h-5 w-5"
+                                :class="{ 'text-gray-400 dark:text-slate-600': currentPage === 1 }" />
                         </button>
-                        <button @click="nextPage" class="border rounded-md p-1" :disabled="currentPage === totalPages">
+                        <button @click="nextPage" class="border rounded-md p-1 dark:border-slate-800 dark:text-slate-50"
+                            :disabled="currentPage === totalPages">
                             <ChevronRightIcon class="h-5 w-5"
-                                :class="{ 'text-gray-400': currentPage === totalPages }" />
+                                :class="{ 'text-gray-400 dark:text-slate-600': currentPage === totalPages }" />
                         </button>
-                        <button @click="lastPage" class="border rounded-md p-1" :disabled="currentPage === totalPages">
+                        <button @click="lastPage" class="border rounded-md p-1 dark:border-slate-800 dark:text-slate-50"
+                            :disabled="currentPage === totalPages">
                             <ChevronDoubleRightIcon class="h-5 w-5"
-                                :class="{ 'text-gray-400': currentPage === totalPages }" />
+                                :class="{ 'text-gray-400 dark:text-slate-600': currentPage === totalPages }" />
                         </button>
                     </div>
                 </div>

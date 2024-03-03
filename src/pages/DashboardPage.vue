@@ -1,16 +1,20 @@
 <template>
     <Navbar></Navbar>
-    <div class="p-4 md:p-6">
-        <div class="max-w-7xl bg-white mx-auto p-6 m-6 rounded-md">
-            <h1 class="font-bold text-3xl">Dashboard</h1>
+    <div class="p-6 lg:p-8">
+        <div class="max-w-7xl mx-auto space-y-6">
+            <div class="space-y-0.5">
+                <h1 class="font-semibold text-2xl text-gray-900 dark:text-slate-50">Dashboard</h1>
+                <p class="text-gray-600 dark:text-slate-400">ข้อมูลโดยรวมทั้งหมด</p>
+            </div>
+            <div class="border-b dark:border-slate-900" />
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
                 <div class="border shadow-sm p-4 rounded-md">
-                    <p class="font-medium">ประเมินแล้ว</p>
-                    <p class="text-2xl font-bold">{{ completedCount }} ฟอร์ม</p>
+                    <p class="font-medium text-blue-600 dark:text-blue-400">ประเมินแล้ว</p>
+                    <p class="text-2xl font-bold dark:text-slate-50">{{ completedCount }} ฟอร์ม</p>
                 </div>
                 <div class="border shadow-sm p-4 rounded-md">
-                    <p class="font-medium">ยังไม่ประเมิน</p>
-                    <p class="text-2xl font-bold">{{ uncompletedCount }} ฟอร์ม</p>
+                    <p class="font-medium text-blue-600 dark:text-blue-400">ยังไม่ประเมิน</p>
+                    <p class="text-2xl font-bold dark:text-slate-50">{{ uncompletedCount }} ฟอร์ม</p>
                 </div>
             </div>
         </div>

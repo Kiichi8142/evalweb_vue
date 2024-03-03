@@ -12,8 +12,13 @@ export const useEvaluationStore = defineStore('evaluationStore', () => {
         evaluations.value = data.data
     }
 
-    const handleUpdateItem = async (item) => {
-        const { data } = await updateEvaluationItem(item.id, item);
+    const handleUpdateItem = async (evalId, evalItem) => {
+        const { data: updatedItem } = await updateEvaluationItem(evalItem.id, evalItem);
+        const currentEvaluation = evaluations.value.find(item => item.id === evalId)
+        const currentItem = currentEvaluation.items.find(item => item.id === evalItem.id)
+        for (const key in updatedItem.data) {
+            currentItem[key] = updatedItem.data[key];
+        }
     }
 
     const selfEvaluations = computed(() => evaluations.value.filter(evaluation => evaluation.employee.id === authStore.user.employee_id))

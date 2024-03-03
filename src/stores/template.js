@@ -1,5 +1,20 @@
 import { defineStore } from "pinia";
-import { allTemplates, allQuestions, makeEvaluationForEmp, allSections, createTemplate, removeTemplateSection, addTemplateSection, updateQuestion, deleteQuestion, removeTemplate, createQuestion } from '@/http/template-api'
+import {
+    allTemplates,
+    allQuestions,
+    makeEvaluationForEmp,
+    allSections,
+    createTemplate,
+    removeTemplateSection,
+    addTemplateSection,
+    updateQuestion,
+    deleteQuestion,
+    removeTemplate,
+    createQuestion,
+    createSection,
+    updateSection,
+    deleteSection
+} from '@/http/template-api'
 import { ref } from 'vue'
 import { useNotification } from "@kyvg/vue3-notification";
 const { notify } = useNotification()
@@ -75,6 +90,25 @@ export const useTemplateStore = defineStore('templateStore', () => {
         })
     }
 
+    const handleCreateSection = async (section) => {
+        const { data: createdSection } = await createSection(section)
+        sections.value.push(createdSection.data)
+    }
+
+    const handleUpdateSection = async (id, section) => {
+        const { data: updatedSection } = await updateSection(id, section)
+        const currentSection = sections.value.find(item => item.id === id)
+        for (const key in updatedSection.data) {
+            currentSection[key] = updatedSection.data[key];
+        }
+    }
+
+    const handleDeleteSection = async (id) => {
+        await deleteSection(id)
+        const index = sections.value.findIndex(item => item.id === id)
+        sections.value.splice(index, 1)
+    }
+
     return {
         templates,
         questions,
@@ -89,7 +123,10 @@ export const useTemplateStore = defineStore('templateStore', () => {
         handleAddTemplateSection,
         handleRemoveTemplateSection,
         handleCreateTemplate,
-        handleMakeEvaluationForAllEmp
+        handleMakeEvaluationForAllEmp,
+        handleCreateSection,
+        handleUpdateSection,
+        handleDeleteSection
     }
 });
 

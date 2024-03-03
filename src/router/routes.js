@@ -14,6 +14,7 @@ import AdminTemplatesPage from "@/pages/Admin/AdminTemplatesPage.vue";
 import AdminTemplateDetailQuestionsPage from "@/pages/Admin/subroute/AdminTemplateDetailQuestionsPage.vue";
 import AdminTemplateDetailManagePage from "@/pages/Admin/subroute/AdminTemplateDetailManagePage.vue";
 import AdminTemplateDetailSectionsPage from "@/pages/Admin/subroute/AdminTemplateDetailSectionsPage.vue";
+import EvaluationSummary from "@/pages/EvaluationSummary.vue";
 
 const routes = [
     {
@@ -25,9 +26,17 @@ const routes = [
         }
     },
     {
-        path: "/evaluation/:id",
+        path: "/evaluations/:id",
         component: EvaluationPageVue,
         name: "evaluation",
+        meta: {
+            auth: true
+        }
+    },
+    {
+        path: "/evaluations/:id/summary",
+        component: EvaluationSummary,
+        name: "evaluation.summary",
         meta: {
             auth: true
         }

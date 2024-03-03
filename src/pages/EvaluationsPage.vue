@@ -3,26 +3,26 @@
     <div class="max-w-7xl mx-auto">
         <div class="p-4 md:p-8 space-y-6">
             <div>
-                <p class="font-semibold text-2xl text-gray-950">รายการแบบประเมิน</p>
-                <p class="text-gray-600">แบบประเมินทั้งหมดที่คุณมี</p>
+                <p class="font-semibold text-2xl text-slate-950 dark:text-slate-50">รายการแบบประเมิน</p>
+                <p class="text-slate-600 dark:text-slate-400">แบบประเมินทั้งหมดที่คุณมี</p>
             </div>
-            <div class="border" />
+            <div class="border-b dark:border-slate-900" />
             <div v-if="evaluations.length" class="max-w-7xl mx-auto rounded-md">
                 <div class="flex flex-col gap-2 rounded-md p-2">
                     <div v-if="selfEvaluations.length" class="space-y-4">
-                        <p class="text-gray-900">ประเมินตนเอง</p>
+                        <p class="text-slate-900 dark:text-slate-100">ประเมินตนเอง</p>
                         <Evaluation v-for="evaluation in selfEvaluations" :evaluation="evaluation"
                             :key="evaluation.id" />
                     </div>
                     <div v-if="otherEvaluations.length">
-                        <p class="text-gray-900">ประเมินผู้อื่น</p>
+                        <p class="text-slate-900 dark:text-slate-100">ประเมินผู้อื่น</p>
                         <Evaluation v-for="evaluation in otherEvaluations" :evaluation="evaluation"
                             :key="evaluation.id" />
                     </div>
                 </div>
             </div>
             <div v-else>
-                <h1 class="text-2xl text-slate-400/80">คุณยังไม่มีแบบประเมินใดๆในตอนนี้</h1>
+                <h1 class="text-2xl text-slate-400/80 dark:text-slate-600/60">คุณยังไม่มีแบบประเมินใดๆในตอนนี้</h1>
             </div>
         </div>
     </div>

@@ -1,18 +1,20 @@
 <template>
-    <div class="border-b border-gray-200">
+    <div class="border-b border-gray-200 dark:border-slate-800">
         <div class="flex justify-between items-center max-w-7xl p-4 mx-auto">
             <div class="font-medium flex items-center gap-4">
-                <router-link :class="[route.name === 'admin.dashboard' ? 'text-blue-600' : 'text-slate-600']"
-                    :to="{ name: 'admin.dashboard' }">แดชบอร์ด</router-link>
-                <router-link :class="[route.path.includes('/admin/manage') ? 'text-blue-600' : 'text-slate-600']"
+                <router-link
+                    :class="[route.path.includes('/admin/manage') ? 'text-blue-600 dark:text-slate-50' : 'text-slate-600 dark:text-slate-400']"
                     :to="{ name: 'admin.teams' }">ข้อมูลทีม</router-link>
-                <router-link :class="[route.path.includes('/admin/templates') ? 'text-blue-600' : 'text-slate-600']"
+                <router-link
+                    :class="[route.path.includes('/admin/templates') ? 'text-blue-600 dark:text-slate-50' : 'text-slate-600 dark:text-slate-400']"
                     :to="{ name: 'admin.templates' }">แบบประเมิน</router-link>
             </div>
-            <div class="relative inline-block text-left">
-                <div v-if="store.isLoggedIn">
-                    <Dropdown :user-role="store.user.role" @logout="logout" :username="store.user.name" />
-                </div>
+            <div class="relative text-left items-center flex gap-4">
+                <Dropdown :user-role="store.user.role" @logout="logout" :username="store.user.name" />
+                <button class="text-center" @click="toggleDark(!isDark)">
+                    <MoonIcon v-if="isDark" class="h-5 w-5 text-slate-50" />
+                    <SunIcon v-else class="h-5 w-5 text-slate-950" />
+                </button>
             </div>
         </div>
     </div>
@@ -22,6 +24,12 @@
 import { useRouter, useRoute } from "vue-router";
 import { useAuthStore } from '@/stores/auth';
 import Dropdown from "./Dropdown.vue";
+import { MoonIcon, SunIcon } from "@heroicons/vue/24/solid";
+
+import { useDark, useToggle } from '@vueuse/core'
+
+const isDark = useDark()
+const toggleDark = useToggle(isDark)
 
 const route = useRoute()
 const router = useRouter()

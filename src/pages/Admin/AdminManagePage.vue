@@ -4,18 +4,21 @@
         <div class="mx-auto max-w-7xl">
             <div class="p-4 lg:p-10 space-y-6">
                 <div class="space-y-0.5">
-                    <h1 class="text-2xl font-bold">การจัดการ</h1>
-                    <p class="text-gray-600">จัดการ แก้ไข หรือ เพิ่มข้อมูลได้ที่นี่</p>
+                    <h1 class="text-2xl font-bold dark:text-slate-50">การจัดการ</h1>
+                    <p class="text-gray-600 dark:text-slate-400">จัดการ แก้ไข หรือ เพิ่มข้อมูลได้ที่นี่</p>
                 </div>
-                <div class="border-b" />
+                <div class="border-b dark:border-slate-800" />
                 <div class="flex flex-col lg:flex-row gap-8">
                     <div class="flex lg:flex-col lg:w-1/4 space-y-0.5">
-                        <router-link class="transition-all py-2 px-4 rounded-md font-medium hover:bg-blue-100/50"
-                            :class="{ 'bg-blue-100/50': route.name === 'admin.teams' }" :to="{ name: 'admin.teams' }">
+                        <router-link
+                            class="transition-all py-2 px-4 rounded-md dark:text-slate-50 font-medium hover:bg-blue-100/50 dark:hover:bg-blue-900/50"
+                            :class="{ 'bg-blue-100/50 dark:bg-blue-900/50 dark:text-slate-50': route.name === 'admin.teams' }"
+                            :to="{ name: 'admin.teams' }">
                             รายการทีม
                         </router-link>
-                        <router-link class="transition-all py-2 px-4 rounded-md font-medium hover:bg-blue-100/50"
-                            :class="{ 'bg-blue-100/50': route.name === 'admin.employees' }"
+                        <router-link
+                            class="transition-all py-2 px-4 rounded-md font-medium dark:bg-slate-900 dark:text-slate-50 hover:bg-blue-100/50 dark:hover:bg-blue-900/50"
+                            :class="{ 'bg-blue-100/50 dark:bg-blue-900/50 dark:text-slate-50': route.name === 'admin.employees' }"
                             :to="{ name: 'admin.employees' }">
                             พนักงาน
                         </router-link>
