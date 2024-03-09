@@ -8,10 +8,13 @@ export const useAuthStore = defineStore("authStore", () => {
 
     const isLoggedIn = computed(() => !!user.value)
 
+    const isUserFetched = ref(false)
+
     const fetchUser = async () => {
         try {
             const { data } = await getUser()
             user.value = data
+            isUserFetched.value = true
         } catch (error) {
             user.value = null
         }
@@ -50,6 +53,7 @@ export const useAuthStore = defineStore("authStore", () => {
         user,
         errors,
         isLoggedIn,
+        isUserFetched,
         fetchUser,
         handleLogin,
         handleLogout,

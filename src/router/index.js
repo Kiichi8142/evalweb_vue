@@ -9,7 +9,16 @@ const router = createRouter({
 
 router.beforeEach(async (to, from) => {
     const store = useAuthStore()
-    await store.fetchUser()
+
+    // check for user data
+    if (!store.isUserFetched) {
+        try {
+            await store.fetchUser()
+        } catch (error) {
+            //
+        }
+    }
+
     if (to.meta.auth && !store.isLoggedIn) {
         return { name: "login", query: { redirect: to.fullPath } }
     } else if (to.meta.guest && store.isLoggedIn) {

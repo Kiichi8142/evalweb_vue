@@ -16,9 +16,12 @@
                             <p class="text-gray-600 dark:text-slate-400">เลือกคะแนนตามหัวข้อประเมิน</p>
                         </div>
                         <div class="flex flex-col">
-                            <p class="text-xl font-medium dark:text-slate-50">จำนวนข้อทั้งหมด {{ itemsCount }}</p>
-                            <p class="text-lg text-blue-600 dark:text-blue-400">ประเมินแล้ว {{ itemsCompleted }} / {{
-        itemsCount }} ข้อ</p>
+                            <p class="text-xl font-medium dark:text-slate-50">
+                                จำนวนข้อทั้งหมด {{ itemsCount }}
+                            </p>
+                            <p class="text-lg text-blue-600 dark:text-blue-400">
+                                ประเมินแล้ว {{ itemsCompleted }} / {{ itemsCount }} ข้อ
+                            </p>
                         </div>
                     </div>
                     <div class="border-b dark:border-slate-800" />
@@ -40,6 +43,20 @@
                 <div v-if="itemsCompleted === itemsCount" class="flex justify-center">
                     <button @click="goToSummary"
                         class="bg-blue-600 dark:bg-blue-400 hover:dark:bg-blue-500 dark:text-slate-950 px-3 py-2 text-blue-50 rounded-md font-medium">ดูผลประเมิน</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div v-else class="max-w-7xl mx-auto">
+        <div class="p-6 lg:p-8 space-y-6">
+            <div class="flex justify-center items-center gap-4 pt-32">
+                <h1 class="text-4xl font-semibold dark:text-slate-50">404</h1>
+                <div class="flex flex-col gap-2">
+                    <p class="dark:text-slate-50 text-xl">ไม่พบแบบประเมินที่คุณต้องการ</p>
+                    <router-link :to="{ name: 'evaluations' }"
+                        class="text-slate-50 dark:text-slate-950 px-3 py-1 bg-blue-600 dark:bg-blue-400 rounded-md w-fit">
+                        <p>กลับไปหน้ารายการแบบประเมิน</p>
+                    </router-link>
                 </div>
             </div>
         </div>

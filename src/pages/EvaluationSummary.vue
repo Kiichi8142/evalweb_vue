@@ -39,7 +39,8 @@
                 </div>
                 <div class="space-y-0.5">
                     <h1 class="font-semibold text-lg text-slate-600 dark:text-slate-400">คะแนนรวมทั้งหมด</h1>
-                    <p class="font-medium text-xl text-slate-900 dark:text-slate-100">{{ totalEvalScore }} คะแนน</p>
+                    <p class="font-medium text-xl text-slate-900 dark:text-slate-100">{{ totalEvalScore.toFixed(2) }}
+                        คะแนน</p>
                 </div>
                 <div class="border-t border-slate-200 dark:border-slate-900 pb-32" />
             </div>

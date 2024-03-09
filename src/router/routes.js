@@ -15,8 +15,14 @@ import AdminTemplateDetailQuestionsPage from "@/pages/Admin/subroute/AdminTempla
 import AdminTemplateDetailManagePage from "@/pages/Admin/subroute/AdminTemplateDetailManagePage.vue";
 import AdminTemplateDetailSectionsPage from "@/pages/Admin/subroute/AdminTemplateDetailSectionsPage.vue";
 import EvaluationSummary from "@/pages/EvaluationSummary.vue";
+import TestPage from "@/pages/TestPage.vue";
 
 const routes = [
+    {
+        path: "/test",
+        component: TestPage,
+        name: "test",
+    },
     {
         path: "/evaluations",
         component: EvaluationsPageVue,
