@@ -76,7 +76,6 @@ import { storeToRefs } from "pinia";
 import { useEvaluationStore } from "@/stores/evaluation";
 import { useRoute, useRouter } from "vue-router";
 import EvaluationItem from "@/components/evaluations/EvaluationItem.vue";
-import EvaluationItemReference from "@/components/evaluations/EvaluationItemReference.vue";
 import EvaluationPersonInfo from "@/components/evaluations/EvaluationPersonInfo.vue";
 
 const store = useEvaluationStore();
