@@ -8,16 +8,20 @@
             </div>
             <div class="border-b dark:border-slate-900" />
             <div v-if="evaluations.length" class="max-w-7xl mx-auto rounded-md">
-                <div class="flex flex-col gap-2 rounded-md p-2">
+                <div class="flex flex-col gap-2 rounded-md">
                     <div v-if="selfEvaluations.length" class="space-y-4">
                         <p class="text-slate-900 dark:text-slate-100">ประเมินตนเอง</p>
-                        <Evaluation v-for="evaluation in selfEvaluations" :evaluation="evaluation"
-                            :key="evaluation.id" />
+                        <div class="flex flex-col gap-2">
+                            <Evaluation v-for="evaluation in selfEvaluations" :evaluation="evaluation"
+                                :key="evaluation.id" />
+                        </div>
                     </div>
                     <div v-if="otherEvaluations.length">
                         <p class="text-slate-900 dark:text-slate-100">ประเมินผู้อื่น</p>
-                        <Evaluation v-for="evaluation in otherEvaluations" :evaluation="evaluation"
-                            :key="evaluation.id" />
+                        <div class="flex flex-col gap-2">
+                            <Evaluation v-for="evaluation in otherEvaluations" :evaluation="evaluation"
+                                :key="evaluation.id" />
+                        </div>
                     </div>
                 </div>
             </div>

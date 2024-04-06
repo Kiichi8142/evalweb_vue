@@ -46,8 +46,8 @@ const { errors, isLoggedIn } = storeToRefs(store)
 const { handleLogin } = store
 
 const form = reactive({
-    email: "",
-    password: ""
+    email: null,
+    password: null
 })
 
 const handleSubmit = async () => {
